@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link, useNavigate, Outlet, Navigate } from 'react-router-dom';
 
 const NotImplemented = () => (
   <div>
@@ -7,6 +7,20 @@ const NotImplemented = () => (
     <h1>Esta página aún no esta lista</h1>
   </div>
 );
+
+const UsersOutlet = () => {
+  const navigate = useNavigate();
+  let redirect = () => {
+    navigate('/'); // Navega al inicio de la pagina.
+  }
+  return (
+    <>
+      <button onClick={redirect}>Home</button>
+      {/* El componente asignado al prop element del Route anidado se sustituira por el componente Outlet */}
+      <Outlet />
+    </>
+  );
+}
 
 function App() {
   return (
@@ -21,8 +35,12 @@ function App() {
 
         {/* Rutas para el usuario. */}
         <Routes>
-          {/* Rutas anidadas */}
-          <Route path="/users">
+          {/* 
+          Navigate: indica a cual ruta se debe navegar.
+          <Route path="/users" element={<Navigate to="/" />} >
+           */}
+          <Route path="/users" element={<UsersOutlet />} >
+            {/* Rutas anidadas */}
             <Route path="signin" element={<NotImplemented />} />
             <Route path="signup" element={<NotImplemented />} />
 
