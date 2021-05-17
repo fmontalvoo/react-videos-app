@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import { signIn, signOut } from "../store";
+import { signIn, signOut } from "../store/user";
 
 const SignIn = () => {
     const dispatch = useDispatch();

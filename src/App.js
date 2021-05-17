@@ -59,6 +59,7 @@ function App() {
           Navigate: indica a cual ruta se debe navegar.
           <Route path="/users" element={<Navigate to="/" />} >
            */}
+
             {/* Rutas para el usuario. */}
             <Route path="/users" element={<UsersOutlet />} >
               {/* Rutas anidadas */}
