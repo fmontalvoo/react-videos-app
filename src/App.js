@@ -1,10 +1,17 @@
-import { BrowserRouter, Routes, Route, Link, useNavigate, Outlet, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link, useNavigate, Outlet, Navigate, useParams } from 'react-router-dom';
 
 const NotImplemented = () => (
   <div>
     {/* Link: permite navegar entre componentes sin refrescar el navegador. */}
     <Link to='/videos'>ir a videos</Link>
     <h1>Esta página aún no esta lista</h1>
+  </div>
+);
+
+const Error404 = () => (
+  <div>
+    <Link to='/'>Volver al inicio</Link>
+    <h1>404 - Página no encontrada</h1>
   </div>
 );
 
@@ -22,6 +29,16 @@ const UsersOutlet = () => {
   );
 }
 
+const Video = () => {
+  // Hook para recuperar los parametros de la ruta.
+  let { id } = useParams();
+  return (
+    <div>
+      <h1>Id: {id}</h1>
+    </div>
+  );
+}
+
 function App() {
   return (
     <div>
@@ -31,31 +48,28 @@ function App() {
         <Routes>
           {/* Route: permite definir la ruta y el componente que se mostrara en esa ruta. */}
           <Route path="/" element={<NotImplemented />} />
-        </Routes>
 
-        {/* Rutas para el usuario. */}
-        <Routes>
           {/* 
           Navigate: indica a cual ruta se debe navegar.
           <Route path="/users" element={<Navigate to="/" />} >
            */}
+          {/* Rutas para el usuario. */}
           <Route path="/users" element={<UsersOutlet />} >
             {/* Rutas anidadas */}
             <Route path="signin" element={<NotImplemented />} />
             <Route path="signup" element={<NotImplemented />} />
-
             <Route path=":id" element={<NotImplemented />} />
             <Route path=":id/videos" element={<NotImplemented />} />
           </Route>
-        </Routes>
 
-        {/* Rutas para los videos. */}
-        <Routes>
+          {/* Rutas para los videos. */}
           <Route path="/videos">
             <Route path="/" element={<NotImplemented />} />
+            <Route path=":id" element={<Video />} />
             <Route path="add" element={<NotImplemented />} />
-            <Route path=":id" element={<NotImplemented />} />
           </Route>
+
+          <Route path="*" element={<Error404 />} />
         </Routes>
 
       </BrowserRouter>
