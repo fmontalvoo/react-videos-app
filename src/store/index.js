@@ -20,11 +20,13 @@ let userSlice = createSlice({
     }
 });
 
+// Action creators
+// Funciones que ejecutan a los reducers.
 export const { signIn, signOut } = userSlice.actions;
 
 export const store = configureStore({
     reducer: {
         // Reducer para manejar el estado del usuario.
-        user: userSlice.reducer
+        userStore: userSlice.reducer
     }
 });

@@ -1,8 +1,9 @@
-import { BrowserRouter, Routes, Route, Link, useNavigate, Outlet, Navigate, useParams } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link, Outlet, useParams } from 'react-router-dom';
 
 import { Provider } from 'react-redux'
 
 import { store } from './store';
+import SignIn from './users/SignIn';
 
 const NotImplemented = () => (
   <div>
@@ -20,13 +21,12 @@ const Error404 = () => (
 );
 
 const UsersOutlet = () => {
-  const navigate = useNavigate();
-  let redirect = () => {
-    navigate('/'); // Navega al inicio de la pagina.
-  }
+  // const navigate = useNavigate();
+  // let redirect = () => {
+  //   navigate('/'); // Navega al inicio de la pagina.
+  // }
   return (
     <>
-      <button onClick={redirect}>Home</button>
       {/* El componente asignado al prop element del Route anidado se sustituira por el componente Outlet */}
       <Outlet />
     </>
@@ -62,7 +62,7 @@ function App() {
             {/* Rutas para el usuario. */}
             <Route path="/users" element={<UsersOutlet />} >
               {/* Rutas anidadas */}
-              <Route path="signin" element={<NotImplemented />} />
+              <Route path="signin" element={<SignIn />} />
               <Route path="signup" element={<NotImplemented />} />
               <Route path=":id" element={<NotImplemented />} />
               <Route path=":id/videos" element={<NotImplemented />} />
