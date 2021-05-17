@@ -1,5 +1,9 @@
 import { BrowserRouter, Routes, Route, Link, useNavigate, Outlet, Navigate, useParams } from 'react-router-dom';
 
+import { Provider } from 'react-redux'
+
+import { store } from './store';
+
 const NotImplemented = () => (
   <div>
     {/* Link: permite navegar entre componentes sin refrescar el navegador. */}
@@ -44,34 +48,36 @@ function App() {
     <div>
       {/* BrowserRouter: maneja las rutas en el navegador. */}
       <BrowserRouter>
-        {/* Routes: permite definir grupos de rutas. */}
-        <Routes>
-          {/* Route: permite definir la ruta y el componente que se mostrara en esa ruta. */}
-          <Route path="/" element={<NotImplemented />} />
+        {/* Provider: permite a todos los componentes en su interior acceder al store de Redux. */}
+        <Provider store={store}>
+          <Routes> {/* Routes: permite definir grupos de rutas. */}
 
-          {/* 
+            {/* Route: permite definir la ruta y el componente que se mostrara en esa ruta. */}
+            <Route path="/" element={<NotImplemented />} />
+
+            {/* 
           Navigate: indica a cual ruta se debe navegar.
           <Route path="/users" element={<Navigate to="/" />} >
            */}
-          {/* Rutas para el usuario. */}
-          <Route path="/users" element={<UsersOutlet />} >
-            {/* Rutas anidadas */}
-            <Route path="signin" element={<NotImplemented />} />
-            <Route path="signup" element={<NotImplemented />} />
-            <Route path=":id" element={<NotImplemented />} />
-            <Route path=":id/videos" element={<NotImplemented />} />
-          </Route>
+            {/* Rutas para el usuario. */}
+            <Route path="/users" element={<UsersOutlet />} >
+              {/* Rutas anidadas */}
+              <Route path="signin" element={<NotImplemented />} />
+              <Route path="signup" element={<NotImplemented />} />
+              <Route path=":id" element={<NotImplemented />} />
+              <Route path=":id/videos" element={<NotImplemented />} />
+            </Route>
 
-          {/* Rutas para los videos. */}
-          <Route path="/videos">
-            <Route path="/" element={<NotImplemented />} />
-            <Route path=":id" element={<Video />} />
-            <Route path="add" element={<NotImplemented />} />
-          </Route>
+            {/* Rutas para los videos. */}
+            <Route path="/videos">
+              <Route path="/" element={<NotImplemented />} />
+              <Route path=":id" element={<Video />} />
+              <Route path="add" element={<NotImplemented />} />
+            </Route>
 
-          <Route path="*" element={<Error404 />} />
-        </Routes>
-
+            <Route path="*" element={<Error404 />} />
+          </Routes>
+        </Provider>
       </BrowserRouter>
     </div>
   );
