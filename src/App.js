@@ -21,18 +21,23 @@ function App() {
 
         {/* Rutas para el usuario. */}
         <Routes>
-          <Route path="/users/signin" element={<NotImplemented />} />
-          <Route path="/users/signup" element={<NotImplemented />} />
+          {/* Rutas anidadas */}
+          <Route path="/users">
+            <Route path="signin" element={<NotImplemented />} />
+            <Route path="signup" element={<NotImplemented />} />
 
-          <Route path="/users/:id" element={<NotImplemented />} />
-          <Route path="/users/:id/videos" element={<NotImplemented />} />
+            <Route path=":id" element={<NotImplemented />} />
+            <Route path=":id/videos" element={<NotImplemented />} />
+          </Route>
         </Routes>
 
         {/* Rutas para los videos. */}
         <Routes>
-          <Route path="/videos" element={<NotImplemented />} />
-          <Route path="/videos/add" element={<NotImplemented />} />
-          <Route path="/videos/:id" element={<NotImplemented />} />
+          <Route path="/videos">
+            <Route path="/" element={<NotImplemented />} />
+            <Route path="add" element={<NotImplemented />} />
+            <Route path=":id" element={<NotImplemented />} />
+          </Route>
         </Routes>
 
       </BrowserRouter>
