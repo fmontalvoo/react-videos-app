@@ -1,6 +1,12 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
-const NotImplemented = () => <h1>Esta página aún no esta lista</h1>;
+const NotImplemented = () => (
+  <div>
+    {/* Link: permite navegar entre componentes sin refrescar el navegador. */}
+    <Link to='/videos'>ir a videos</Link>
+    <h1>Esta página aún no esta lista</h1>
+  </div>
+);
 
 function App() {
   return (
