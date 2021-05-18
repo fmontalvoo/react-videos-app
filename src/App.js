@@ -13,6 +13,7 @@ import { signOut } from './store/user';
 import Videos from './videos/Videos';
 
 import { persistor, store } from './store';
+import VideosForm from './videos/VideosForm';
 
 const NotImplemented = () => (
   <div>
@@ -53,16 +54,6 @@ const UsersOutlet = () => {
   );
 }
 
-const Video = () => {
-  // Hook para recuperar los parametros de la ruta.
-  let { id } = useParams();
-  return (
-    <div>
-      <h1>Id: {id}</h1>
-    </div>
-  );
-}
-
 function App() {
   return (
     <div>
@@ -96,8 +87,8 @@ function App() {
               {/* Rutas para los videos. */}
               <Route path="/videos">
                 <Route path="/" element={<Videos />} />
-                <Route path=":id" element={<Video />} />
-                <Route path="add" element={<NotImplemented />} />
+                <Route path=":id" element={<NotImplemented />} />
+                <Route path="add" element={<VideosForm />} />
               </Route>
 
               <Route path="*" element={<Error404 />} />
