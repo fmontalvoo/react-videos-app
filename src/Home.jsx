@@ -2,13 +2,20 @@ import styled from 'styled-components';
 
 // Tagged templates.
 let Example = styled.div`
-    background-color: red;
+    background-color: ${(props) => props.bg};
     height: 200px;
+`;
+
+let Button = styled.button`
+    background-color: ${({ primary }) => primary ? 'red' : 'inherit'}
 `;
 
 const Home = () => {
     return (
-        <Example></Example>
+        <Example bg="green" >
+            <h1>¡Hola Mundo!</h1>
+            <Button primary >Boton</Button>
+        </Example>
     );
 }
 
