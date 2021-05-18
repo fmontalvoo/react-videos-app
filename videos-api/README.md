@@ -16,4 +16,6 @@ Luego debe crear un archivo **.env** en la raíz del proyecto y en el colocar la
     JWT_SECRET=<secret>
 ```
 
+También es necesario crear una carpeta llamada `uploads` para que se puedan subir videos al api.
+
 Finalmente puede ejecutar `npm run start` y el proyecto debería estar funcionando.

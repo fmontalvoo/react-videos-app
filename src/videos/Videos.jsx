@@ -20,7 +20,7 @@ const Videos = () => {
 
     return (
         <div>
-            {videosState.status}
+            {videosState.data.total}
         </div>
     );
 }

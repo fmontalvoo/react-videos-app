@@ -1,6 +1,10 @@
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { uploadVideos } from "../store/videos";
 
 const VideosForm = () => {
+    const dispatch = useDispatch();
+
     const { register, handleSubmit } = useForm();
 
     const onSubmit = async (data) => {
@@ -11,6 +15,11 @@ const VideosForm = () => {
         formData.append('video', data.video[0]);
 
         console.log(formData);
+
+        dispatch(
+            uploadVideos(formData)
+        );
+
     }
 
 

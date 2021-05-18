@@ -27,6 +27,28 @@ export const loadVideos = createAsyncThunk('videos/loadVideos',
     }
 );
 
+export const uploadVideos = createAsyncThunk('videos/uploadVideos',
+    async (videoData, thunkAPI) => {
+        let token;
+        try {
+            // Recupera el token del store del usuario.
+            token = thunkAPI.getState().userStore.user.jwtToken;
+        } catch (error) {
+            console.error(error);
+            return Promise.reject('No existe el token');
+        }
+        if (!token) return Promise.reject('No existe el token');
+
+        const response = await Axios.post(`${apiConfig.domain}/videos`, videoData, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+
+        return response.data;
+    }
+);
+
 // Almacena la informacion inicial de los videos.
 const videosSlice = createSlice({
     name: 'videos',
@@ -42,6 +64,7 @@ const videosSlice = createSlice({
     reducers: {},
     // Crea un reducer para cada uno de los estados en una promesa.
     extraReducers: {
+        // Reducers para recuperar los videos.
         [loadVideos.fulfilled]: (state, action) => {
             let { videos, nextPage, total } = action.payload;
             state.status = 'success';
@@ -50,6 +73,10 @@ const videosSlice = createSlice({
                 nextPage,
                 total
             }
+        },
+        // Reducers para subir video al api de videos. 
+        [uploadVideos.fulfilled]: (state) => {
+            state.status = 'success';
         }
     }
 });
