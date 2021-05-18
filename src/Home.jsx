@@ -23,10 +23,21 @@ let PrimaryButton = styled(Button)`
     background-color: red;
 `;
 
+let Input = styled.input.attrs(
+    (props) => {
+        return {
+            type: 'email'
+        };
+    }
+)`
+    border: solid 1px red;
+`;
+
 const Home = () => {
     return (
         <Example bg="green" >
             <h1>¡Hola Mundo!</h1>
+            <Input type="text" placeholder="Escribe algo..." />
             <Button primary >Boton</Button>
             <PrimaryButton>Boton</PrimaryButton>
         </Example>
