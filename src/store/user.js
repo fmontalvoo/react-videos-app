@@ -25,7 +25,7 @@ let userSlice = createSlice({
     name: 'user',
     initialState: {
         user: null, // Informacion inicial del usuario.
-        state: '' // Maneja el estado del usuario.
+        state: '' // Maneja el estado de las peticiones al api.
     },
     // Define las acciones que van a modificar el estado del usuario.
     reducers: {
