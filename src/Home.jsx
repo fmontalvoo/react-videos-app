@@ -6,7 +6,7 @@ let linkStyle = css`
 
 // Tagged templates.
 let Example = styled.div`
-    background-color: ${(props) => props.bg};
+    background-color: ${({theme}) => theme.colors.dark};
     height: 200px;
     padding: 50px;
 
@@ -57,7 +57,7 @@ let Input = styled.input.attrs(
 
 const Home = () => {
     return (
-        <Example bg="green" className="important" >
+        <Example bg="green"  >
             <h1>¡Hola Mundo!</h1>
             <Input type="text" placeholder="Escribe algo..." />
             <br />
