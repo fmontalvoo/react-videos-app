@@ -14,7 +14,9 @@ const reducer = combineReducers({
 // Configuracion de persistencia.
 const persistConfig = {
     key: 'root',
-    storage: storage
+    storage: storage,
+    whitelist: ['userStore'] // Unicamente almacenara la informacion del usuario de forma persistente.
+    // blacklist: [] // Funciona de forma contraria a whitelist.
 }
 
 const persistedReducer = persistReducer(persistConfig, reducer);
