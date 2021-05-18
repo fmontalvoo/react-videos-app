@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
+// Axios es una libreria para realizar peticiones AJAX.
 import Axios from 'axios';
 
 import apiConfig from '../config/api';
