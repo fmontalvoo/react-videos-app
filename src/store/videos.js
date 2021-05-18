@@ -17,7 +17,7 @@ export const loadVideos = createAsyncThunk('videos/loadVideos',
         }
         if (!token) return Promise.reject('No existe el token');
 
-        const response = await Axios.get(`${apiConfig.domain}/videos/page=${page}`, {
+        const response = await Axios.get(`${apiConfig.domain}/videos?page=${page}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -44,6 +44,7 @@ const videosSlice = createSlice({
     extraReducers: {
         [loadVideos.fulfilled]: (state, action) => {
             let { videos, nextPage, total } = action.payload;
+            state.status = 'success';
             state.data = {
                 videos: state.data.videos.concat(videos),
                 nextPage,

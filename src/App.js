@@ -9,6 +9,9 @@ import { PersistGate } from 'redux-persist/integration/react';
 
 import SignIn from './users/SignIn';
 import { signOut } from './store/user';
+
+import Videos from './videos/Videos';
+
 import { persistor, store } from './store';
 
 const NotImplemented = () => (
@@ -92,7 +95,7 @@ function App() {
 
               {/* Rutas para los videos. */}
               <Route path="/videos">
-                <Route path="/" element={<NotImplemented />} />
+                <Route path="/" element={<Videos />} />
                 <Route path=":id" element={<Video />} />
                 <Route path="add" element={<NotImplemented />} />
               </Route>
