@@ -5,13 +5,16 @@ import storage from 'redux-persist/lib/storage';
 
 import userReducer from './user';
 import videosReducer from './videos';
+import likeReducer from './like'
 
 // Combina los reducers de la aplicacion.
 const reducer = combineReducers({
     // Reducer para manejar el estado del usuario.
     userStore: userReducer,
-    // Reducer para manejar el estado de videos..
-    videosStore: videosReducer
+    // Reducer para manejar el estado de videos.
+    videosStore: videosReducer,
+    // Reducer para manejar el estado los likes.
+    likeStore: likeReducer
 });
 
 // Configuracion de persistencia.

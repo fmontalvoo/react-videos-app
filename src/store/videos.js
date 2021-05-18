@@ -27,7 +27,7 @@ const innerLoadVideos = async (path, thunkAPI) => {
 
 export const loadVideos = createAsyncThunk('videos/loadVideos',
     async (page = 1, thunkAPI) => {
-        return await innerLoadVideos(`videos?page=${page}`);
+        return await innerLoadVideos(`videos?page=${page}`, thunkAPI);
     }
 );
 

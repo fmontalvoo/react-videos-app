@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import Player from './Player';
 
 import { loadVideos } from "../store/videos";
+import { likeVideo } from '../store/like';
 
 
 
@@ -23,6 +24,12 @@ const Videos = () => {
         []
     );
 
+    const like = (id) => {
+        dispatch(
+            likeVideo(id)
+        );
+    }
+
     return (
         <div>
             {
@@ -33,6 +40,8 @@ const Videos = () => {
                             <div key={video.id}>
                                 <h2>{video.title}</h2>
                                 <Player video={video} />
+                                <button onClick={() => like(video.id)}
+                                    style={{ backgroundColor: (video.isLikedByCurrentUser ? 'blue' : 'inherit') }} >Like</button>
                             </div>
                         )
                     )
