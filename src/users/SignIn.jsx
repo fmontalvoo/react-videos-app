@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import { signIn, signOut } from "../store/user";
+import { signIn, signOut, signUp } from "../store/user";
 
 const SignIn = () => {
     const dispatch = useDispatch();
@@ -12,6 +12,20 @@ const SignIn = () => {
             signIn({
                 email: 'fgmo@email.com',
                 jwt: 'abc123./'
+            })
+        );
+    }
+
+    const createAccount = () => {
+        // Ejecuta el la accion que llama al reducer signUp del estado del usuario. 
+        dispatch(
+            // Asigna informacion nueva al usuario.
+            signUp({
+                credentials: {
+                    username: 'fgmo',
+                    email: 'fgmo@email.com',
+                    password: 'abc123./'
+                }
             })
         );
     }
@@ -32,7 +46,7 @@ const SignIn = () => {
         <div>
             {
                 user ? <button onClick={logOut} >Cerrar sesión</button>
-                    : <button onClick={logIn} >Iniciar sesión</button>
+                    : <button onClick={createAccount} >Crear cuenta</button>
             }
         </div>
     );

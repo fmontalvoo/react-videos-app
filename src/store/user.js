@@ -1,10 +1,15 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
+import Axios from 'axios';
+
+import apiConfig from '../config/api';
+
 // Ejecuta una funcion asincrona para modificar el estado del usuario.
 export const signUp = createAsyncThunk('user/signUp',
     // Promesa
     async ({ credentials }) => {
-        return credentials;
+        const response = await Axios.post(`${apiConfig.domain}/users`, { user: credentials });
+        return response.data.user;
     }
 );
 
