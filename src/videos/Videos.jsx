@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 
@@ -25,6 +26,7 @@ const Videos = () => {
     return (
         <div>
             {
+                // Lista todos los videos del storage de Redux.
                 videosState.data.videos
                     .map(
                         video => (

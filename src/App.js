@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Link, Outlet, useParams, useNavigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link, Outlet, useNavigate } from 'react-router-dom';
 
 import { Provider } from 'react-redux'
 
@@ -10,6 +10,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import SignIn from './users/SignIn';
 import { signOut } from './store/user';
 
+import Video from './videos/Video';
 import Videos from './videos/Videos';
 
 import { persistor, store } from './store';
@@ -87,7 +88,7 @@ function App() {
               {/* Rutas para los videos. */}
               <Route path="/videos">
                 <Route path="/" element={<Videos />} />
-                <Route path=":id" element={<NotImplemented />} />
+                <Route path=":id" element={<Video />} />
                 <Route path="add" element={<VideosForm />} />
               </Route>
 
