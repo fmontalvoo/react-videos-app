@@ -15,6 +15,7 @@ import Videos from './videos/Videos';
 
 import { persistor, store } from './store';
 import VideosForm from './videos/VideosForm';
+import Profile from './users/Profile';
 
 const NotImplemented = () => (
   <div>
@@ -81,7 +82,7 @@ function App() {
                 {/* Rutas anidadas */}
                 <Route path="signin" element={<SignIn />} />
                 <Route path="signup" element={<NotImplemented />} />
-                <Route path=":id" element={<NotImplemented />} />
+                <Route path="profile" element={<Profile />} />
                 <Route path=":id/videos" element={<NotImplemented />} />
               </Route>
 

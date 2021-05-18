@@ -5,25 +5,35 @@ import Axios from 'axios';
 
 import apiConfig from '../config/api';
 
+const innerLoadVideos = async (path, thunkAPI) => {
+    let token;
+    try {
+        // Recupera el token del store del usuario.
+        token = thunkAPI.getState().userStore.user.jwtToken;
+    } catch (error) {
+        console.error(error);
+        return Promise.reject('No existe el token');
+    }
+    if (!token) return Promise.reject('No existe el token');
+
+    const response = await Axios.get(`${apiConfig.domain}/${path}`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+
+    return response.data;
+}
+
 export const loadVideos = createAsyncThunk('videos/loadVideos',
     async (page = 1, thunkAPI) => {
-        let token;
-        try {
-            // Recupera el token del store del usuario.
-            token = thunkAPI.getState().userStore.user.jwtToken;
-        } catch (error) {
-            console.error(error);
-            return Promise.reject('No existe el token');
-        }
-        if (!token) return Promise.reject('No existe el token');
+        return await innerLoadVideos(`videos?page=${page}`);
+    }
+);
 
-        const response = await Axios.get(`${apiConfig.domain}/videos?page=${page}`, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        });
-
-        return response.data;
+export const loadUserVideos = createAsyncThunk('videos/loadUserVideos',
+    async (args, thunkAPI) => {
+        return await innerLoadVideos(`users/videos`, thunkAPI);
     }
 );
 
@@ -96,6 +106,10 @@ const videosSlice = createSlice({
                 nextPage,
                 total
             }
+        },
+        // Reducers para recuperar los videos del usuario.
+        [loadUserVideos.fulfilled]: (state, action) => {
+            state.data.videos = action.payload;
         },
         // Reducers para subir video al api de videos. 
         [uploadVideos.fulfilled]: (state) => {

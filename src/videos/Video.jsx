@@ -5,8 +5,8 @@ import { useParams } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 
-import { getVideo } from '../store/videos';
 import Player from './Player';
+import { getVideo } from '../store/videos';
 
 const Video = () => {
     // Recupera el id del video de la ruta.
@@ -14,7 +14,7 @@ const Video = () => {
 
     const dispatch = useDispatch();
 
-    // Recupera el store de videos de Redux.
+    // Recupera el video que corresponde al id de la ruta.
     const currentVideo = useSelector(state => state.videosStore.currentVideo);
 
     // Se ejecuta al inicio del componente.
@@ -23,9 +23,7 @@ const Video = () => {
             dispatch(
                 getVideo(id)
             );
-        },
-        []
-    );
+        }, []);
 
     return (
         <div>
