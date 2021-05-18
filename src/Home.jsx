@@ -1,4 +1,8 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+let linkStyle = css`
+    font-size: 0.5em;
+`;
 
 // Tagged templates.
 let Example = styled.div`
@@ -27,6 +31,7 @@ let Button = styled.button`
     font-size: 1em;
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);
     border-radius: 2px;
+    ${linkStyle} // Reutilizacion de estilos.
 
 `;
 
@@ -34,6 +39,7 @@ let Button = styled.button`
 let PrimaryButton = styled(Button)`
     border: 0;
     background-color: red;
+    ${linkStyle}
 `;
 
 let Input = styled.input.attrs(
