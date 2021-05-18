@@ -5,6 +5,7 @@ import { signIn } from "../store/user";
 
 
 const SignIn = () => {
+    // Permite llamar/ejecutar los reducers para cambiar el estado de la aplicacion.
     const dispatch = useDispatch();
 
     const { register, handleSubmit } = useForm();

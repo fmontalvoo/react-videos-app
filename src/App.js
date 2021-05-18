@@ -1,9 +1,13 @@
-import { BrowserRouter, Routes, Route, Link, Outlet, useParams } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link, Outlet, useParams, useNavigate } from 'react-router-dom';
 
 import { Provider } from 'react-redux'
 
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+
 import { store } from './store';
 import SignIn from './users/SignIn';
+import { signOut } from './store/user';
 
 const NotImplemented = () => (
   <div>
@@ -21,12 +25,23 @@ const Error404 = () => (
 );
 
 const UsersOutlet = () => {
-  // const navigate = useNavigate();
-  // let redirect = () => {
-  //   navigate('/'); // Navega al inicio de la pagina.
-  // }
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  // Recupera la informacion del usuario del store de Redux.
+  const user = useSelector(state => state.userStore.user);
+
+  const logOut = () => {
+    dispatch(
+      signOut()
+    );
+    navigate('/users/signin');
+  }
   return (
     <>
+      {
+        user && <button onClick={logOut} >Cerrar sesi&oacute;n</button>
+      }
       {/* El componente asignado al prop element del Route anidado se sustituira por el componente Outlet */}
       <Outlet />
     </>
