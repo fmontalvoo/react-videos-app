@@ -1,7 +1,11 @@
 import { useEffect } from 'react';
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+
+import Player from './Player';
+
 import { loadVideos } from "../store/videos";
+
 
 
 
@@ -23,7 +27,12 @@ const Videos = () => {
             {
                 videosState.data.videos
                     .map(
-                        video => <div key={video.id}><h2>{video.title}</h2></div>
+                        video => (
+                            <div key={video.id}>
+                                <h2>{video.title}</h2>
+                                <Player video={video} />
+                            </div>
+                        )
                     )
             }
         </div>
