@@ -20,7 +20,12 @@ const Videos = () => {
 
     return (
         <div>
-            {videosState.data.total}
+            {
+                videosState.data.videos
+                    .map(
+                        video => <div key={video.id}><h2>{video.title}</h2></div>
+                    )
+            }
         </div>
     );
 }
