@@ -5,9 +5,11 @@ import { Provider } from 'react-redux'
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 
-import { store } from './store';
+import { PersistGate } from 'redux-persist/integration/react';
+
 import SignIn from './users/SignIn';
 import { signOut } from './store/user';
+import { persistor, store } from './store';
 
 const NotImplemented = () => (
   <div>
@@ -65,34 +67,39 @@ function App() {
       <BrowserRouter>
         {/* Provider: permite a todos los componentes en su interior acceder al store de Redux. */}
         <Provider store={store}>
-          <Routes> {/* Routes: permite definir grupos de rutas. */}
+          {/* PersistGate: permite a todos los componentes en su interior utilizar la persistencia de datos. 
+          El prop loading permite mostrar un componente mientras se recuperar la
+          informacion del storage persistente */}
+          <PersistGate loading={null} persistor={persistor} >
+            <Routes> {/* Routes: permite definir grupos de rutas. */}
 
-            {/* Route: permite definir la ruta y el componente que se mostrara en esa ruta. */}
-            <Route path="/" element={<NotImplemented />} />
+              {/* Route: permite definir la ruta y el componente que se mostrara en esa ruta. */}
+              <Route path="/" element={<NotImplemented />} />
 
-            {/* 
+              {/* 
           Navigate: indica a cual ruta se debe navegar.
           <Route path="/users" element={<Navigate to="/" />} >
            */}
 
-            {/* Rutas para el usuario. */}
-            <Route path="/users" element={<UsersOutlet />} >
-              {/* Rutas anidadas */}
-              <Route path="signin" element={<SignIn />} />
-              <Route path="signup" element={<NotImplemented />} />
-              <Route path=":id" element={<NotImplemented />} />
-              <Route path=":id/videos" element={<NotImplemented />} />
-            </Route>
+              {/* Rutas para el usuario. */}
+              <Route path="/users" element={<UsersOutlet />} >
+                {/* Rutas anidadas */}
+                <Route path="signin" element={<SignIn />} />
+                <Route path="signup" element={<NotImplemented />} />
+                <Route path=":id" element={<NotImplemented />} />
+                <Route path=":id/videos" element={<NotImplemented />} />
+              </Route>
 
-            {/* Rutas para los videos. */}
-            <Route path="/videos">
-              <Route path="/" element={<NotImplemented />} />
-              <Route path=":id" element={<Video />} />
-              <Route path="add" element={<NotImplemented />} />
-            </Route>
+              {/* Rutas para los videos. */}
+              <Route path="/videos">
+                <Route path="/" element={<NotImplemented />} />
+                <Route path=":id" element={<Video />} />
+                <Route path="add" element={<NotImplemented />} />
+              </Route>
 
-            <Route path="*" element={<Error404 />} />
-          </Routes>
+              <Route path="*" element={<Error404 />} />
+            </Routes>
+          </PersistGate>
         </Provider>
       </BrowserRouter>
     </div>
