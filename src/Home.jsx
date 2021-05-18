@@ -5,7 +5,20 @@ let Example = styled.div`
     background-color: ${(props) => props.bg};
     height: 200px;
     padding: 50px;
-`;
+
+    & a {
+        color: purple;
+    }
+
+    &:hover {
+        background-color: cyan;
+    }
+
+    &.important {
+        background-color: yellow;
+    }
+
+    `;
 
 let Button = styled.button`
     border: solid 1px red;
@@ -31,15 +44,22 @@ let Input = styled.input.attrs(
     }
 )`
     border: solid 1px red;
+    .important &{
+        background-color: purple;
+    }
 `;
 
 const Home = () => {
     return (
-        <Example bg="green" >
+        <Example bg="green" className="important" >
             <h1>¡Hola Mundo!</h1>
             <Input type="text" placeholder="Escribe algo..." />
+            <br />
             <Button primary >Boton</Button>
-            <PrimaryButton>Boton</PrimaryButton>
+            <br />
+            <PrimaryButton >Boton</PrimaryButton>
+            <br />
+            <a >Hola</a>
         </Example>
     );
 }
