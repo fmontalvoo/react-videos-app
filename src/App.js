@@ -7,15 +7,17 @@ import { useDispatch } from 'react-redux';
 
 import { PersistGate } from 'redux-persist/integration/react';
 
+import Home from './Home';
+
 import SignIn from './users/SignIn';
-import { signOut } from './store/user';
+import Profile from './users/Profile';
 
 import Video from './videos/Video';
 import Videos from './videos/Videos';
-
-import { persistor, store } from './store';
 import VideosForm from './videos/VideosForm';
-import Profile from './users/Profile';
+
+import { signOut } from './store/user';
+import { persistor, store } from './store';
 
 const NotImplemented = () => (
   <div>
@@ -70,7 +72,7 @@ function App() {
             <Routes> {/* Routes: permite definir grupos de rutas. */}
 
               {/* Route: permite definir la ruta y el componente que se mostrara en esa ruta. */}
-              <Route path="/" element={<NotImplemented />} />
+              <Route path="/" element={<Home />} />
 
               {/* 
           Navigate: indica a cual ruta se debe navegar.

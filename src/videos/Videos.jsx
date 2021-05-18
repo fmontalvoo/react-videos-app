@@ -41,7 +41,7 @@ const Videos = () => {
                                 <h2>{video.title}</h2>
                                 <Player video={video} />
                                 <button onClick={() => like(video.id)}
-                                    style={{ backgroundColor: (video.isLikedByCurrentUser ? 'blue' : 'inherit') }} >Like</button>
+                                    style={{ backgroundColor: (video.isLikedByCurrentUser ? 'red' : 'inherit') }} >Like</button>
                             </div>
                         )
                     )
