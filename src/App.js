@@ -18,10 +18,12 @@ import VideoShow from './videos/VideoShow';
 import Videos from './videos/Videos';
 import VideosForm from './videos/VideosForm';
 
+import Layout from './components/Layout';
+
 import { signOut } from './store/user';
 import { persistor, store } from './store';
 
-import theme, { Layout } from './themes/theme';
+import theme from './themes/theme';
 
 const NotImplemented = () => (
   <div>
@@ -75,7 +77,7 @@ function App() {
           <PersistGate loading={null} persistor={persistor} >
             {/* ThemeProvider: Establece el tema que utilizara toda la aplicacion. */}
             <ThemeProvider theme={theme}>
-             {/* Layout: aplica el tema a todos los componentes en su interior.*/}
+              {/* Layout: aplica el tema a todos los componentes en su interior.*/}
               <Layout>
 
                 <Routes> {/* Routes: permite definir grupos de rutas. */}

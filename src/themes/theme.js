@@ -56,29 +56,16 @@ export let LayoutContainer = styled.div`
   min-height: 100vh;
   grid-template-rows: auto minmax(0,1fr) auto;
   
-  & nav{
-    height: 100px;
-    background-color: ${({ theme }) => theme.colors.dark};
-  }
+  // & nav{
+  //   height: 100px;
+  //   background-color: ${({ theme }) => theme.colors.dark};
+  // }
 
-  & footer{
-    height: 100px;
-    background-color: ${({ theme }) => theme.colors.dark};
-  }
+  // & footer{
+  //   height: 100px;
+  //   background-color: ${({ theme }) => theme.colors.dark};
+  // }
 `;
-
-export const Layout = (props) => {
-  return (
-    <LayoutContainer>
-      <nav></nav>
-      <main>
-        {/* Accede a los componentes que vienen en los props. */}
-        {props.children}
-      </main>
-      <footer></footer>
-    </LayoutContainer>
-  );
-}
 
 export let SmallContainer = styled.div`
   width: ${({ theme }) => theme.dims.widths.small};
@@ -117,6 +104,16 @@ export let SvgButton = styled(ReactSVG)`
   }
 `;
 
+export let Title = styled.h1`
+  font-size:${({ theme }) => theme.dims.fonts.medium};
+  font-weight:bold;
+  display:inline-block;
+  margin-block-start:0;
+  margin-block-end:0;
+  margin-left:${({ theme }) => theme.dims.margin.intersection};
+  vertical-align: middle;
+`;
+
 /*
 export let GlobalStyles = createGlobalStyle`
   *{ box-sizing: border-box }
@@ -128,16 +125,6 @@ export let CenteredContainer = styled.div`
   justify-content: center;
   height: 100%;
   width:100%;
-`;
-
-export let Title = styled.h1`
-  font-size:${({theme}) => theme.dims.fonts.medium };
-  font-weight:bold;
-  display:inline-block;
-  margin-block-start:0;
-  margin-block-end:0;
-  margin-left:${({theme}) => theme.dims.margin.intersection };
-  vertical-align: middle;
 `;
 
 export let AppButton = styled.button`
