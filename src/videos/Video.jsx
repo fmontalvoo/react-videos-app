@@ -1,41 +1,65 @@
-import { useEffect } from 'react';
-
-import { useParams } from 'react-router-dom';
+import Player from './Player';
 
 import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
 
-import Player from './Player';
-import { getVideo } from '../store/videos';
+import styled from "styled-components";
 
-const Video = () => {
-    // Recupera el id del video de la ruta.
-    const { id } = useParams();
+import { likeVideo } from '../store/like';
 
+let VideoContainer = styled.div`
+  position:relative;
+  padding-bottom:177%;
+  margin-bottom:${({ theme }) => theme.dims.margin.normal};
+  background-color: ${({ theme }) => theme.colors.black};
+  & iframe{
+    z-index:1;
+  }
+  & .info{
+    position:absolute;
+    z-index:2;
+    display: grid;
+    grid-template-rows: minmax(0,1fr) 100px;
+    grid-template-columns: minmax(0,1fr) auto;
+    grid-template-areas: 'main sidebar'
+                          ' info sidebar ';
+    
+    align-items:flex-start;
+    transition:opacity 0.2s ease-in;
+    width:100%;
+    height:100%;
+    top:0px;
+    left:0px;
+    & article, & aside, & .user-info{
+      padding: ${({ theme }) => theme.dims.padding.largePadding};
+    }
+    & article.main{ grid-area: main; }
+    & aside.sidebar{ grid-area: sidebar; }
+    & .user-info{ grid-area: info; align-self: middle; }
+  }
+`;
+
+const Video = ({ video }) => {
     const dispatch = useDispatch();
 
-    // Recupera el video que corresponde al id de la ruta.
-    const currentVideo = useSelector(state => state.videosStore.currentVideo);
-
-    // Se ejecuta al inicio del componente.
-    useEffect(
-        () => {
-            dispatch(
-                getVideo(id)
-            );
-        }, []);
-
+    const like = (id) => {
+        dispatch(
+            likeVideo(id)
+        );
+    }
     return (
-        <div>
-            {
-                currentVideo
-                &&
-                <>
-                    <h2>{currentVideo.title}</h2>
-                    <Player video={currentVideo} />
-                </>
-            }
-        </div>
+        <VideoContainer key={video.id}>
+            <div className="info">
+                <aside className="sidebar">
+                    <button onClick={() => like(video.id)}
+                        style={{ backgroundColor: (video.isLikedByCurrentUser ? 'red' : 'inherit') }} >Like</button>
+                </aside>
+                <div className="user-info">
+                    <h2>{video.title}</h2>
+                </div>
+            </div>
+            <Player video={video} />
+
+        </VideoContainer>
     );
 }
 

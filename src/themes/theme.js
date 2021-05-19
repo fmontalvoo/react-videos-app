@@ -79,15 +79,15 @@ export const Layout = (props) => {
   );
 }
 
-/*
-export let GlobalStyles = createGlobalStyle`
-  *{ box-sizing: border-box }
-`;
-
 export let SmallContainer = styled.div`
   width: ${({theme}) => theme.dims.widths.small };
   max-width: 100vw;
   margin: 0 auto;
+`;
+
+/*
+export let GlobalStyles = createGlobalStyle`
+  *{ box-sizing: border-box }
 `;
 
 export let CenteredContainer = styled.div`

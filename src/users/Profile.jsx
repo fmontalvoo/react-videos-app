@@ -3,7 +3,8 @@ import { useEffect } from 'react';
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 
-import Player from '../videos/Player';
+import Video from '../videos/Video';
+import { SmallContainer } from '../themes/theme';
 
 import { loadUserVideos } from '../store/videos';
 
@@ -22,20 +23,17 @@ const Profile = () => {
         }, []);
 
     return (
-        <div>
+        <SmallContainer>
             {
                 // Lista todos los videos del storage de Redux.
                 videos
                     .map(
                         video => (
-                            <div key={video.id}>
-                                <h2>{video.title}</h2>
-                                <Player video={video} />
-                            </div>
+                            <Video video={video} />
                         )
                     )
             }
-        </div>
+        </SmallContainer>
     );
 }
 

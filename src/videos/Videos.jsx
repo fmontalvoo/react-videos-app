@@ -3,10 +3,11 @@ import { useEffect } from 'react';
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 
-import Player from './Player';
+import Video from './Video';
 
 import { loadVideos } from "../store/videos";
-import { likeVideo } from '../store/like';
+import { SmallContainer } from '../themes/theme';
+
 
 
 
@@ -24,29 +25,18 @@ const Videos = () => {
         []
     );
 
-    const like = (id) => {
-        dispatch(
-            likeVideo(id)
-        );
-    }
-
     return (
-        <div>
+        <SmallContainer>
             {
                 // Lista todos los videos del storage de Redux.
                 videosState.data.videos
                     .map(
                         video => (
-                            <div key={video.id}>
-                                <h2>{video.title}</h2>
-                                <Player video={video} />
-                                <button onClick={() => like(video.id)}
-                                    style={{ backgroundColor: (video.isLikedByCurrentUser ? 'red' : 'inherit') }} >Like</button>
-                            </div>
+                            <Video video={video} />
                         )
                     )
             }
-        </div>
+        </SmallContainer>
     );
 }
 

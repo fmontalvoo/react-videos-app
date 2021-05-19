@@ -14,7 +14,7 @@ import Home from './Home';
 import SignIn from './users/SignIn';
 import Profile from './users/Profile';
 
-import Video from './videos/Video';
+import VideoShow from './videos/VideoShow';
 import Videos from './videos/Videos';
 import VideosForm from './videos/VideosForm';
 
@@ -100,7 +100,7 @@ function App() {
                   {/* Rutas para los videos. */}
                   <Route path="/videos">
                     <Route path="/" element={<Videos />} />
-                    <Route path=":id" element={<Video />} />
+                    <Route path=":id" element={<VideoShow />} />
                     <Route path="add" element={<VideosForm />} />
                   </Route>
 
