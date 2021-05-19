@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
@@ -16,6 +16,8 @@ import VideosList from './VideosList';
 const Videos = () => {
     const dispatch = useDispatch();
 
+    const [loading, setState] = useState(false);
+
     // Recupera el store de videos de Redux.
     const videosState = useSelector(state => state.videosStore);
 
@@ -27,14 +29,14 @@ const Videos = () => {
     // );
 
     const loadNextPage = async () => {
+        setState(true);
         await dispatch(loadVideos());
+        setState(false);
     }
 
     return (
         <SmallContainer>
-            <VideosList videoState={videosState} loadNextPage={loadNextPage} >
-
-            </VideosList>
+            <VideosList videosState={videosState} loadNextPage={loadNextPage} loading={loading} />
             {
                 // Lista todos los videos del storage de Redux.
                 // videosState.data.videos

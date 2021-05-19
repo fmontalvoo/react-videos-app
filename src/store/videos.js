@@ -26,7 +26,14 @@ const innerLoadVideos = async (path, thunkAPI) => {
 }
 
 export const loadVideos = createAsyncThunk('videos/loadVideos',
-    async (page = 1, thunkAPI) => {
+    async (args, thunkAPI) => {
+        let page;
+        try {
+            // Recupera el token del store del usuario.
+            page = thunkAPI.getState().userStore.user.nextPage;
+        } catch (error) {
+            page = 1;
+        }
         return await innerLoadVideos(`videos?page=${page}`, thunkAPI);
     }
 );

@@ -37,23 +37,22 @@ let VideoContainer = styled.div`
   }
 `;
 
-const Video = ({ video }) => {
+const Video = ({ video, style }) => {
+  return (
+    <VideoContainer style={style}>
+      <div className="info">
+        <aside className="sidebar">
+          <LikeButton video={video} />
+          <ShareButton />
+        </aside>
+        <div className="user-info">
+          <h2>{video.title}</h2>
+        </div>
+      </div>
+      <Player video={video} />
 
-    return (
-        <VideoContainer key={video.id}>
-            <div className="info">
-                <aside className="sidebar">
-                    <LikeButton video={video} />
-                    <ShareButton />
-                </aside>
-                <div className="user-info">
-                    <h2>{video.title}</h2>
-                </div>
-            </div>
-            <Player video={video} />
-
-        </VideoContainer>
-    );
+    </VideoContainer>
+  );
 }
 
 export default Video;
