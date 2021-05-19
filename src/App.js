@@ -20,7 +20,8 @@ import VideosForm from './videos/VideosForm';
 
 import { signOut } from './store/user';
 import { persistor, store } from './store';
-import theme from './themes/theme';
+
+import theme, { Layout } from './themes/theme';
 
 const NotImplemented = () => (
   <div>
@@ -74,35 +75,39 @@ function App() {
           <PersistGate loading={null} persistor={persistor} >
             {/* ThemeProvider: Establece el tema que utilizara toda la aplicacion. */}
             <ThemeProvider theme={theme}>
+             {/* Layout: aplica el tema a todos los componentes en su interior.*/}
+              <Layout>
 
-              <Routes> {/* Routes: permite definir grupos de rutas. */}
+                <Routes> {/* Routes: permite definir grupos de rutas. */}
 
-                {/* Route: permite definir la ruta y el componente que se mostrara en esa ruta. */}
-                <Route path="/" element={<Home />} />
+                  {/* Route: permite definir la ruta y el componente que se mostrara en esa ruta. */}
+                  <Route path="/" element={<Home />} />
 
-                {/* 
+                  {/* 
           Navigate: indica a cual ruta se debe navegar.
           <Route path="/users" element={<Navigate to="/" />} >
            */}
 
-                {/* Rutas para el usuario. */}
-                <Route path="/users" element={<UsersOutlet />} >
-                  {/* Rutas anidadas */}
-                  <Route path="signin" element={<SignIn />} />
-                  <Route path="signup" element={<NotImplemented />} />
-                  <Route path="profile" element={<Profile />} />
-                  <Route path=":id/videos" element={<NotImplemented />} />
-                </Route>
+                  {/* Rutas para el usuario. */}
+                  <Route path="/users" element={<UsersOutlet />} >
+                    {/* Rutas anidadas */}
+                    <Route path="signin" element={<SignIn />} />
+                    <Route path="signup" element={<NotImplemented />} />
+                    <Route path="profile" element={<Profile />} />
+                    <Route path=":id/videos" element={<NotImplemented />} />
+                  </Route>
 
-                {/* Rutas para los videos. */}
-                <Route path="/videos">
-                  <Route path="/" element={<Videos />} />
-                  <Route path=":id" element={<Video />} />
-                  <Route path="add" element={<VideosForm />} />
-                </Route>
+                  {/* Rutas para los videos. */}
+                  <Route path="/videos">
+                    <Route path="/" element={<Videos />} />
+                    <Route path=":id" element={<Video />} />
+                    <Route path="add" element={<VideosForm />} />
+                  </Route>
 
-                <Route path="*" element={<Error404 />} />
-              </Routes>
+                  <Route path="*" element={<Error404 />} />
+                </Routes>
+
+              </Layout>
 
             </ThemeProvider>
           </PersistGate>

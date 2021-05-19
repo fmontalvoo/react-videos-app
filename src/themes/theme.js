@@ -48,16 +48,40 @@ export default {
     depth3: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)'
   }
 }
-/*
-export let GlobalStyles = createGlobalStyle`
-  *{ box-sizing: border-box }
-`;
+
 
 export let LayoutContainer = styled.div`
   display: grid;
   min-height: 100vh;
   grid-template-rows: auto minmax(0,1fr) auto;
   
+  & nav{
+    height: 100px;
+    background-color: ${({ theme }) => theme.colors.dark};
+  }
+
+  & footer{
+    height: 100px;
+    background-color: ${({ theme }) => theme.colors.dark};
+  }
+`;
+
+export const Layout = (props) => {
+  return (
+    <LayoutContainer>
+      <nav></nav>
+      <main>
+        {/* Accede a los componentes que vienen en los props. */}
+        {props.children}
+      </main>
+      <footer></footer>
+    </LayoutContainer>
+  );
+}
+
+/*
+export let GlobalStyles = createGlobalStyle`
+  *{ box-sizing: border-box }
 `;
 
 export let SmallContainer = styled.div`

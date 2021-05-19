@@ -6,7 +6,7 @@ let linkStyle = css`
 
 // Tagged templates.
 let Example = styled.div`
-    background-color: ${({theme}) => theme.colors.dark};
+    background-color: ${({theme}) => theme.colors.accent};
     height: 200px;
     padding: 50px;
 
