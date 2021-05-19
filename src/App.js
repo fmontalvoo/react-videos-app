@@ -33,6 +33,7 @@ function App() {
               {/* Layout: aplica el tema a todos los componentes en su interior.*/}
               <Layout>
 
+                {/* Rutas de la aplicacion. */}
                 <AppRoutes />
 
               </Layout>

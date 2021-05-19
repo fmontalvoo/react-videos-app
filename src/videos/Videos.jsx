@@ -21,30 +21,30 @@ const Videos = () => {
     // Recupera el store de videos de Redux.
     const videosState = useSelector(state => state.videosStore);
 
-    // useEffect(
-    //     () => {
-    //         dispatch(loadVideos());
-    //     },
-    //     []
-    // );
+    useEffect(
+        () => {
+            dispatch(loadVideos());
+        },
+        []
+    );
 
-    const loadNextPage = async () => {
-        setState(true);
-        await dispatch(loadVideos());
-        setState(false);
-    }
+    // const loadNextPage = async () => {
+    //     setState(true);
+    //     await dispatch(loadVideos());
+    //     setState(false);
+    // }
 
     return (
         <SmallContainer>
-            <VideosList videosState={videosState} loadNextPage={loadNextPage} loading={loading} />
+            {/* <VideosList videosState={videosState} loadNextPage={loadNextPage} loading={loading} /> */}
             {
                 // Lista todos los videos del storage de Redux.
-                // videosState.data.videos
-                //     .map(
-                //         (video, index) => (
-                //             <Video video={video} index={index} />
-                //         )
-                //     )
+                videosState.data.videos
+                    .map(
+                        (video, index) => (
+                            <Video video={video} index={index} />
+                        )
+                    )
             }
         </SmallContainer>
     );
