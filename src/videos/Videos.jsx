@@ -7,6 +7,7 @@ import Video from './Video';
 
 import { loadVideos } from "../store/videos";
 import { SmallContainer } from '../themes/theme';
+import VideosList from './VideosList';
 
 
 
@@ -18,23 +19,30 @@ const Videos = () => {
     // Recupera el store de videos de Redux.
     const videosState = useSelector(state => state.videosStore);
 
-    useEffect(
-        () => {
-            dispatch(loadVideos());
-        },
-        []
-    );
+    // useEffect(
+    //     () => {
+    //         dispatch(loadVideos());
+    //     },
+    //     []
+    // );
+
+    const loadNextPage = async () => {
+        await dispatch(loadVideos());
+    }
 
     return (
         <SmallContainer>
+            <VideosList videoState={videosState} loadNextPage={loadNextPage} >
+
+            </VideosList>
             {
                 // Lista todos los videos del storage de Redux.
-                videosState.data.videos
-                    .map(
-                        (video, index) => (
-                            <Video video={video} index={index} />
-                        )
-                    )
+                // videosState.data.videos
+                //     .map(
+                //         (video, index) => (
+                //             <Video video={video} index={index} />
+                //         )
+                //     )
             }
         </SmallContainer>
     );
