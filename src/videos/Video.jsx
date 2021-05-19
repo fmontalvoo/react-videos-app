@@ -1,10 +1,9 @@
 import Player from './Player';
 
-import { useDispatch } from "react-redux";
-
 import styled from "styled-components";
 
-import { likeVideo } from '../store/like';
+import LikeButton from './LikeButton';
+import ShareButton from './ShareButton';
 
 let VideoContainer = styled.div`
   position:relative;
@@ -39,19 +38,13 @@ let VideoContainer = styled.div`
 `;
 
 const Video = ({ video }) => {
-    const dispatch = useDispatch();
 
-    const like = (id) => {
-        dispatch(
-            likeVideo(id)
-        );
-    }
     return (
         <VideoContainer key={video.id}>
             <div className="info">
                 <aside className="sidebar">
-                    <button onClick={() => like(video.id)}
-                        style={{ backgroundColor: (video.isLikedByCurrentUser ? 'red' : 'inherit') }} >Like</button>
+                    <LikeButton video={video} />
+                    <ShareButton />
                 </aside>
                 <div className="user-info">
                     <h2>{video.title}</h2>

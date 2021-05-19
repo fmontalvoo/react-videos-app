@@ -28,8 +28,8 @@ const Profile = () => {
                 // Lista todos los videos del storage de Redux.
                 videos
                     .map(
-                        video => (
-                            <Video video={video} />
+                        (video, index) => (
+                            <Video video={video} index={index} />
                         )
                     )
             }

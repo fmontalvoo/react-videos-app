@@ -1,4 +1,5 @@
-// import { ReactSVG } from "react-svg";
+// Permite agregar imagenes svg en componentes de React.
+import { ReactSVG } from "react-svg";
 import styled, { createGlobalStyle } from "styled-components";
 
 export default {
@@ -80,9 +81,40 @@ export const Layout = (props) => {
 }
 
 export let SmallContainer = styled.div`
-  width: ${({theme}) => theme.dims.widths.small };
+  width: ${({ theme }) => theme.dims.widths.small};
   max-width: 100vw;
   margin: 0 auto;
+`;
+
+export let ClearButton = styled.button`
+  outline:0;
+  border:0;
+  background-color:transparent;
+  font-size:1em;
+  display:block;
+`
+
+export let SvgButton = styled(ReactSVG)`
+  & svg{
+    width: ${({ theme }) => theme.dims.circle.small};
+    height: ${({ theme }) => theme.dims.circle.small};
+    display:inline-block;
+    vertical-align: bottom;
+  }
+  // Cambia el color de fondo al boton si es que tiene un like.
+  background-color: ${({ theme, active }) => active ? theme.colors.accent : theme.colors.dark};
+  cursor: pointer;
+  border-radius: 50%;
+  width: ${({ theme }) => theme.dims.circle.medium};
+  height: ${({ theme }) => theme.dims.circle.medium};
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom: ${({ theme }) => theme.dims.margin.intersection};
+
+  & path {
+    fill: ${({ theme }) => theme.colors.white} !important; // Cambia el color de la imagen svg.
+  }
 `;
 
 /*
@@ -96,38 +128,6 @@ export let CenteredContainer = styled.div`
   justify-content: center;
   height: 100%;
   width:100%;
-`;
-
-
-
-export let ClearButton = styled.button`
-  outline:0;
-  border:0;
-  background-color:transparent;
-  font-size:1em;
-  display:block;
-`
-
-export let SvgButton = styled(ReactSVG)`
-  & svg{
-    width: ${({theme}) => theme.dims.circle.small };
-    height: ${({ theme }) => theme.dims.circle.small };
-    display:inline-block;
-    vertical-align: bottom;
-  }
-  background-color: ${({theme, active}) => active ? theme.colors.accent : theme.colors.dark };
-  cursor: pointer;
-  border-radius: 50%;
-  width: ${({ theme }) => theme.dims.circle.medium};
-  height: ${({ theme }) => theme.dims.circle.medium};
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin-bottom: ${({ theme }) => theme.dims.margin.intersection};
-
-  & path {
-    fill: ${({ theme }) => theme.colors.white } !important;
-  }
 `;
 
 export let Title = styled.h1`

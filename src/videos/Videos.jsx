@@ -31,8 +31,8 @@ const Videos = () => {
                 // Lista todos los videos del storage de Redux.
                 videosState.data.videos
                     .map(
-                        video => (
-                            <Video video={video} />
+                        (video, index) => (
+                            <Video video={video} index={index} />
                         )
                     )
             }
