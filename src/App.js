@@ -23,7 +23,7 @@ import Layout from './components/Layout';
 import { signOut } from './store/user';
 import { persistor, store } from './store';
 
-import theme from './themes/theme';
+import theme, { GlobalStyles } from './themes/theme';
 
 const NotImplemented = () => (
   <div>
@@ -75,8 +75,10 @@ function App() {
           El prop loading permite mostrar un componente mientras se recuperar la
           informacion del storage persistente */}
           <PersistGate loading={null} persistor={persistor} >
-            {/* ThemeProvider: Establece el tema que utilizara toda la aplicacion. */}
+            {/* ThemeProvider: establece el tema que utilizara toda la aplicacion. */}
             <ThemeProvider theme={theme}>
+              {/* GlobalStyles: aplica estilos de forma global para la aplicacion. */}
+              <GlobalStyles />
               {/* Layout: aplica el tema a todos los componentes en su interior.*/}
               <Layout>
 

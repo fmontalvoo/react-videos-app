@@ -114,11 +114,6 @@ export let Title = styled.h1`
   vertical-align: middle;
 `;
 
-/*
-export let GlobalStyles = createGlobalStyle`
-  *{ box-sizing: border-box }
-`;
-
 export let CenteredContainer = styled.div`
   display:flex;
   align-items:center;
@@ -132,7 +127,7 @@ export let AppButton = styled.button`
   border-radius: ${({ theme }) => theme.dims.borderRadius.normal};
   padding: ${({ theme }) => theme.dims.padding.largePadding};
   box-shadow: ${({ theme }) => theme.shadows.depth1};
-  margin-top: ${({theme}) => theme.dims.margin.normal };
+  margin-top: ${({ theme }) => theme.dims.margin.normal};
   font-size: 1em;
   color: ${({ theme }) => theme.colors.white};
   width: ${({ fullWidth, small, theme }) => {
@@ -147,4 +142,7 @@ export let AppButton = styled.button`
     box-shadow: ${({ theme }) => theme.shadows.depth2};
   }
 `;
-*/
+
+export let GlobalStyles = createGlobalStyle`
+  *{ box-sizing: border-box }
+`;
