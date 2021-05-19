@@ -1,7 +1,17 @@
 import { useRef, useEffect } from 'react';
 
+import styled from 'styled-components';
+
 // Reproductor de vide de api.video
 import { PlayerSdk } from '@api.video/player-sdk';
+
+let Iframe = styled.iframe`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top:0px;
+  left:0px;
+`;
 
 const Player = ({ video }) => {
     let player = useRef(null);
@@ -20,7 +30,7 @@ const Player = ({ video }) => {
     );
 
     return (
-        <iframe
+        <Iframe
             id={`appPlayer-${video.id}`}
             title={video.title}
             src={`https://embed.api.video/vod/${video.remoteVideoId}`}
@@ -28,7 +38,7 @@ const Player = ({ video }) => {
             height="100%"
             scrolling="no"
             allowFullScreen={true}
-            frameborder="0"></iframe>
+            frameborder="0" />
     );
 }
 
